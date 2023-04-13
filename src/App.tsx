@@ -1,30 +1,24 @@
-// import { Button } from "react-bootstrap";
-import Carousel from 'react-bootstrap/Carousel';
+import Carousel from './components/Carousel';
+import Game from './components/Game';
+import NavBar from './components/NavBar';
+import games from './games';
+import { useState } from 'react';
 
 function App() {
+  /** The index of selected game */
+  const [game, setGame] = useState(-1);
+
+  function backHome() {
+    setGame(-1);
+  }
+
   return (
     <div id="App">
-      <p>Arcade games!</p>
-      <Carousel interval={null}>
-        <Carousel.Item>
-          <h3>Game #1</h3>
-          <Carousel.Caption>
-            <p>Pong</p>
-          </Carousel.Caption>
-        </Carousel.Item>
-        <Carousel.Item>
-          <h3>Game #2</h3>
-          <Carousel.Caption>
-            <p>Snake</p>
-          </Carousel.Caption>
-        </Carousel.Item>
-        <Carousel.Item>
-          <h3>Game #3</h3>
-          <Carousel.Caption>
-            <p>Tetris</p>
-          </Carousel.Caption>
-        </Carousel.Item>
-      </Carousel>
+      <NavBar goBack={backHome} gameName={games[game]?.title ?? ""} />
+      {games[game] == undefined ?
+        <Carousel setGame={setGame} /> :
+        <Game />
+      }
     </div>
   )
 }
