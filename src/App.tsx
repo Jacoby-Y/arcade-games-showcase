@@ -17,7 +17,7 @@ function App() {
       <NavBar goBack={backHome} gameName={games[game]?.title ?? ""} />
       {games[game] == undefined ?
         <Carousel setGame={setGame} /> :
-        <Game />
+        <Game game={games[game]} />
       }
     </div>
   )

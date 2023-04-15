@@ -1,11 +1,15 @@
-import React from 'react'
+import { Game as GameType } from "../games"
 
-function Game() {
+interface Props {
+  game: GameType
+}
+
+function Game({ game }: Props) {
   return (
-    <main>
-      Game
+    <main id="Game">
+      <iframe src={game.link} />
     </main>
   )
 }
 
-export default Game
+export default Game;
